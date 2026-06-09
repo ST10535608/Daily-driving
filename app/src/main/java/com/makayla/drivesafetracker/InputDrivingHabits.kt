@@ -88,6 +88,8 @@ class InputDrivingHabits : AppCompatActivity() {
         btnDetailScreen.setOnClickListener {
             val intent = Intent(this, DetailsScreen::class.java)
             intent.putExtra("total", calculateTotal())
+            intent.putExtra("average", calculateAverageSleep())
+            intent.putExtra("highest", findMostDrivingDay())
             startActivity(intent)
         }
 
@@ -109,17 +111,6 @@ class InputDrivingHabits : AppCompatActivity() {
         notes[index] = notesInput
     }
 
-    fun displayResults() {
-        var result = ""
-        var counter = 0
-        while (counter < days.count()) {
-            result += "${days[counter]}: ${hoursDriven[counter]} hrs driven, " +
-                    "${restStops[counter]} stops, " +
-                    "${prevNightHoursSlept[counter]} hrs slept\n"
-            counter ++
-        }
-
-    }
 
     fun clearData() {
         hoursDriven = Array (7) { 0 }
@@ -143,6 +134,29 @@ class InputDrivingHabits : AppCompatActivity() {
             counter++
         }
         return total
+    }
+
+    fun calculateAverageSleep(): Double {
+        var total = 0
+        var counter = 0
+        while (counter < prevNightHoursSlept.count()){
+            total += prevNightHoursSlept[counter]
+            counter++
+        }
+        return total.toDouble()/prevNightHoursSlept.count()
+    }
+
+    fun findMostDrivingDay(): String {
+        var max = hoursDriven[0]
+        var maxIndex = 0
+        var counter = 1
+        while (counter < hoursDriven.count()){
+            if (hoursDriven[counter] > max){
+                max = hoursDriven[counter]
+            }
+            counter++
+        }
+        return "${days[maxIndex]} ($max hrs)"
     }
 
 }
