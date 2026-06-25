@@ -7,8 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class DetailsScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,13 +22,15 @@ class DetailsScreen : AppCompatActivity() {
         val txtFeedback = findViewById<TextView>(R.id.txtFeedback)
 
         val bundle = intent.extras
-        val total = bundle?.getInt("total") ?: 0
-        val highestDriven = bundle?.getString("highest")?: ""
-        val averageSleep = bundle?.getDouble("average")?: 0.0
+        val total = bundle?.getDouble("total") ?: 0.0
+        val highestDriven = bundle?.getString("highest") ?: ""
+        val averageSleep = bundle?.getDouble("average") ?: 0.0
 
-        txtHoursTotal.text = "Total hours driven: $total hrs"
+        val totalFormatted = String.format("%.1f", total)
+        val avgFormatted = String.format("%.1f", averageSleep)
+
+        txtHoursTotal.text = "Total hours driven: $totalFormatted hrs"
         txtHighestDriving.text = "Most driving: $highestDriven"
-        val avgFormatted = String.format("%1f", averageSleep)
         txtAvgSleep.text = "Average sleep: $avgFormatted hrs"
 
         if (total > 40) {
@@ -41,10 +41,8 @@ class DetailsScreen : AppCompatActivity() {
             txtFeedback.text = "Great job! You are managing your driving safely."
         }
 
-        // Back button
         btnBack.setOnClickListener {
             finish()
         }
-
     }
 }

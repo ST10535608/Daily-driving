@@ -16,10 +16,10 @@
         android:text="Drive Safe Tracker"
         android:textColor="#00ACC1"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.067" />
 
     <TextView
@@ -30,75 +30,74 @@
         android:text="Day of the Week"
         android:textColor="#F06292"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.212" />
 
     <EditText
         android:id="@+id/edtTxtHrsDriven"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:ems="10"
         android:hint="Hours Driven"
         android:inputType="numberDecimal"
         android:textColor="#000000"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
+        android:textColorHint="#888888"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@id/edtTxtStops"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.331" />
 
     <EditText
         android:id="@+id/edtTxtStops"
-        android:layout_width="149dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:ems="10"
         android:hint="Rest Stops Taken"
         android:inputType="number"
         android:textColor="#000000"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="#888888"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.843"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/edtTxtHrsDriven"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.331" />
 
     <EditText
         android:id="@+id/edtTxtHrsSlept"
-        android:layout_width="215dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:ems="10"
         android:hint="Hours slept previous night"
         android:inputType="numberDecimal"
         android:textColor="#000000"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="#888888"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.434" />
 
     <EditText
         android:id="@+id/edtTxtNotes"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
         android:hint="Notes on driving"
+        android:inputType="text"
         android:textColor="#000000"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="#888888"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.548" />
 
     <Button
@@ -107,10 +106,10 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#81C784"
         android:text="Continue to next day"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.71" />
 
     <Button
@@ -119,11 +118,10 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#F06292"
         android:text="Clear data entered"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.816" />
 
     <Button
@@ -132,9 +130,10 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FF8A65"
         android:text="See detailed view"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.923" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

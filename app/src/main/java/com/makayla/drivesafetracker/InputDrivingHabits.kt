@@ -11,20 +11,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class InputDrivingHabits : AppCompatActivity() {
 
-    var days = arrayOf ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+    val days = arrayOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 
-    var hoursDriven = Array( 7 ){ 0 }
-
-    var restStops = Array( 7 ) { 0 }
-
-    var prevNightHoursSlept = Array( 7 ) { 0 }
-
-    var notes = Array( 7 ) { "" }
+    var hoursDriven = Array(7) { 0.0 }
+    var restStops = Array(7) { 0 }
+    var prevNightHoursSlept = Array(7) { 0.0 }
+    var notes = Array(7) { "" }
 
     var index = 0
 
@@ -32,9 +27,7 @@ class InputDrivingHabits : AppCompatActivity() {
     lateinit var edtStops: EditText
     lateinit var edtHrsSlept: EditText
     lateinit var edtNotes: EditText
-
     lateinit var txtWeekday: TextView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +60,7 @@ class InputDrivingHabits : AppCompatActivity() {
             fillArrays()
 
             if (index < days.count() - 1) {
-                index ++
+                index++
                 txtWeekday.text = days[index]
                 edtDriven.text.clear()
                 edtStops.text.clear()
@@ -77,12 +70,10 @@ class InputDrivingHabits : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "All 7 days entered! Tap 'See Detailed View'", Toast.LENGTH_SHORT).show()
             }
-
         }
 
         btnClearData.setOnClickListener {
             clearData()
-
         }
 
         btnDetailScreen.setOnClickListener {
@@ -92,30 +83,19 @@ class InputDrivingHabits : AppCompatActivity() {
             intent.putExtra("highest", findMostDrivingDay())
             startActivity(intent)
         }
-
     }
 
     fun fillArrays() {
-        val hrsDriven = edtDriven.text.toString()
-        val rstStops = edtStops.text.toString()
-        val hrsSlept = edtHrsSlept.text.toString()
-        val notesInput = edtNotes.text.toString()
-
-        if (hrsDriven.isEmpty() || rstStops.isEmpty() || hrsSlept.isEmpty() || notesInput.isEmpty()) {
-            Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
-            return
-        }
-        hoursDriven[index] = hrsDriven.toInt()
-        restStops[index] = rstStops.toInt()
-        prevNightHoursSlept[index] = hrsSlept.toInt()
-        notes[index] = notesInput
+        hoursDriven[index] = edtDriven.text.toString().toDouble()
+        restStops[index] = edtStops.text.toString().toInt()
+        prevNightHoursSlept[index] = edtHrsSlept.text.toString().toDouble()
+        notes[index] = edtNotes.text.toString()
     }
 
-
     fun clearData() {
-        hoursDriven = Array (7) { 0 }
+        hoursDriven = Array(7) { 0.0 }
         restStops = Array(7) { 0 }
-        prevNightHoursSlept = Array(7) { 0 }
+        prevNightHoursSlept = Array(7) { 0.0 }
         notes = Array(7) { "" }
         edtDriven.text.clear()
         edtStops.text.clear()
@@ -126,8 +106,8 @@ class InputDrivingHabits : AppCompatActivity() {
         Toast.makeText(this, "Data Cleared", Toast.LENGTH_SHORT).show()
     }
 
-    fun calculateTotal(): Int {
-        var total = 0
+    fun calculateTotal(): Double {
+        var total = 0.0
         var counter = 0
         while (counter < hoursDriven.count()) {
             total += hoursDriven[counter]
@@ -137,26 +117,26 @@ class InputDrivingHabits : AppCompatActivity() {
     }
 
     fun calculateAverageSleep(): Double {
-        var total = 0
+        var total = 0.0
         var counter = 0
-        while (counter < prevNightHoursSlept.count()){
+        while (counter < prevNightHoursSlept.count()) {
             total += prevNightHoursSlept[counter]
             counter++
         }
-        return total.toDouble()/prevNightHoursSlept.count()
+        return total / prevNightHoursSlept.count()
     }
 
     fun findMostDrivingDay(): String {
         var max = hoursDriven[0]
         var maxIndex = 0
         var counter = 1
-        while (counter < hoursDriven.count()){
-            if (hoursDriven[counter] > max){
+        while (counter < hoursDriven.count()) {
+            if (hoursDriven[counter] > max) {
                 max = hoursDriven[counter]
+                maxIndex = counter
             }
             counter++
         }
         return "${days[maxIndex]} ($max hrs)"
     }
-
 }
